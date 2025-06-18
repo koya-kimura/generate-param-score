@@ -1,0 +1,299 @@
+/* 基本的なスタイルとフォント設定 */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    /* モダンなフォント */
+    margin: 0;
+    padding: 30px;
+    background-color: #f8f8f8;
+    /* わずかにオフホワイトで柔らかい印象に */
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 中央寄せ */
+}
+
+/* 全体のコンテナとして機能する div に最大幅を設定 */
+body>div {
+    max-width: 800px;
+    /* コンテンツの幅を制限して見やすく */
+    width: 100%;
+    background-color: #fff;
+    /* コンテンツ部分は純粋な白 */
+    padding: 25px;
+    border-radius: 10px;
+    /* 角を丸く */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    /* わずかな影で浮遊感を出す */
+    margin-bottom: 25px;
+    /* 各セクションの下に余白 */
+    box-sizing: border-box;
+    /* paddingを含めて幅を計算 */
+}
+
+/* ヘッダー */
+h1 {
+    font-size: 2.8em;
+    color: #222;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: -0.03em;
+    /* 少し詰めてプロフェッショナルに */
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #444;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    /* セクションの区切りを視覚的に強調 */
+    padding-bottom: 8px;
+}
+
+/* ラベル */
+label {
+    font-weight: 600;
+    color: #555;
+    margin-right: 10px;
+}
+
+/* Select, Input[type="number"], Input[type="file"] */
+select,
+input[type="number"],
+input[type="file"] {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    color: #333;
+    transition: border-color 0.3s ease;
+    background-color: #fafafa;
+}
+
+select:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
+    border-color: #a0d9e0;
+    /* フォーカス時に色を変える */
+    outline: none;
+    box-shadow: 0 0 5px rgba(160, 217, 224, 0.5);
+}
+
+input[type="number"] {
+    width: 80px;
+    /* 幅を少し広げて見やすく */
+    text-align: center;
+}
+
+/* ボタンの共通スタイル */
+button {
+    background-color: #6aa8a8;
+    /* おしゃれな青緑系 */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-right: 10px;
+    /* ボタン間のスペース */
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #558c8c;
+    /* ホバーで少し濃く */
+    transform: translateY(-1px);
+    /* 少し上に浮き上がる */
+}
+
+button:active {
+    background-color: #447a7a;
+    /* クリック時にさらに濃く */
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* 個別の調整 */
+#canvas-container {
+    border: 1px solid #eee;
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    overflow: hidden;
+    /* p5.jsキャンバスがはみ出さないように */
+    display: flex;
+    /* キャンバスを中央寄せにするため */
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    /* 描画前の最低高さを確保 */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    /* わずかな内側の影 */
+}
+
+/* スコア評価ボタンのコンテナ */
+#score-ui {
+    display: flex;
+    gap: 10px;
+    /* ボタン間の隙間 */
+    justify-content: center;
+    /* ボタンを中央に配置 */
+    margin-top: 25px;
+    /* 上の要素からの間隔 */
+}
+
+#score-ui button {
+    background-color: #90be6d;
+    /* 評価ボタンは別の色で差別化 */
+    padding: 12px 18px;
+    font-weight: 700;
+}
+
+#score-ui button:hover {
+    background-color: #7cb559;
+}
+
+/* 進捗表示 */
+#eval-progress-label {
+    font-size: 1.1em;
+    color: #666;
+    font-weight: 500;
+    text-align: center;
+    display: block;
+    /* 中央寄せのため */
+}
+
+/* 自動スコアリング関連のUI調整 */
+#auto-center-ui {
+    display: flex;
+    flex-wrap: wrap;
+    /* スライダーが多すぎたら改行 */
+    gap: 15px;
+    /* スライダー間の隙間 */
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+#auto-center-ui>div {
+    /* 各パラメータのスライダーコンテナ */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+}
+
+#auto-center-ui label {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+#auto-center-ui input[type="range"] {
+    width: 180px;
+    /* スライダーの幅 */
+    margin-top: 5px;
+    -webkit-appearance: none;
+    /* デフォルトのスタイルをリセット */
+    background: transparent;
+    /* スライダーの背景を透明に */
+}
+
+/* スライダーのつまみ（Chrome/Safari） */
+#auto-center-ui input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: #6aa8a8;
+    cursor: pointer;
+    margin-top: -7px;
+    /* トラックの中央に配置 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* スライダーのトラック（Chrome/Safari） */
+#auto-center-ui input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+}
+
+/* スライダーのつまみ（Firefox） */
+#auto-center-ui input[type="range"]::-moz-range-thumb {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: #6aa8a8;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* スライダーのトラック（Firefox） */
+#auto-center-ui input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+}
+
+#auto-center-list {
+    border-top: 1px dashed #eee;
+    padding-top: 15px;
+}
+
+#auto-center-list .center-point {
+    background-color: #f5f5f5;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    color: #555;
+}
+
+#auto-center-list .center-point span {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+#auto-center-list .center-point button {
+    background-color: #e74c3c;
+    /* 削除ボタンは赤色 */
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.8em;
+    border-radius: 4px;
+    margin-right: 0;
+    /* 右端に寄せるため */
+}
+
+#auto-center-list .center-point button:hover {
+    background-color: #c0392b;
+}
+
+/* チェックボックス */
+input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+    /* チェックボックスを少し大きく */
+    accent-color: #6aa8a8;
+    /* チェックボックスの色をブランドカラーに */
+}
+
+/* 各セクションの余白 */
+body>div+div {
+    margin-top: 25px;
+    /* 各 div の間に間隔を追加 */
+}

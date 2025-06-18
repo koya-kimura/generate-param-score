@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>p5.js Art Gallery</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1>p5.js アートギャラリー</h1>
+
+    <!-- 描画パターンの選択UI -->
+    <div>
+        <label for="pattern-selector">描画パターン：</label>
+        <select id="pattern-selector"></select>
+        <button onclick="generateNewArt()">再生成</button>
+    </div>
+
+    <!-- キャンバス配置先 -->
+    <div id="canvas-container" style="margin-top: 20px;"></div>
+
+    <!-- 現在の進捗表示 -->
+    <div style="margin-top: 10px;">
+        <span id="eval-progress-label">0 / 0 枚 評価中</span>
+    </div>
+
+    <!-- 評価UIエリア（手動評価） -->
+    <div id="score-ui" style="margin-top: 20px;"></div>
+
+    <!-- 評価UIの下あたりに -->
+    <div style="margin-top: 20px;">
+        <button onclick="downloadCSVFromScoreLog(scoreLog)">CSVを保存</button>
+    </div>
+
+    <button onclick="downloadZIPFromScoreLog(scoreLog)">CSVと画像をZIPで保存</button>
+
+    <div style="margin-top: 20px;">
+        <label>CSVから評価データを読み込む：</label>
+        <input type="file" accept=".csv" onchange="loadCSVAndRestoreScoreLog(this)">
+    </div>
+
+    <!-- 評価条件の設定 -->
+    <div style="margin-top: 20px;">
+        <label>評価する枚数：</label>
+        <input id="eval-count-input" type="number" min="1" value="10" style="width: 60px;">
+        <button onclick="startEvaluation()">評価スタート</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <h3>自動スコアリング中心点の設定</h3>
+        <div id="auto-center-ui"></div>
+        <button onclick="addAutoScoreCenter()">中心点を追加</button>
+        <div id="auto-center-list" style="margin-top: 10px;">
+        </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <label>
+            <input type="checkbox" id="auto-score-toggle" onchange="onToggleAutoScoring()"> 自動スコアリングを使う
+        </label>
+    </div>
+
+    <!-- スクリプト読み込み順（p5.js → pattern → scorer → main） -->
+    <script src="lib/p5.js"></script>
+    <script src="lib/JSZip.min.js"></script>
+    <script src="lib/FileSaver.min.js"></script>
+    <script src="pattern/base.js"></script>
+    <script src="pattern/patternA.js"></script>
+    <script src="scorer/manual.js"></script>
+    <script src="scorer/auto.js"></script>
+    <script src="ui/export.js"></script>
+    <script src="ui/import.js"></script>
+    <script src="ui/evalUI.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
